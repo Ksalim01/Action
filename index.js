@@ -3,7 +3,7 @@ const github = require('@actions/github');
 const exec = require('@actions/exec');
 const io = require('@actions/io');
 const artifact = require('@actions/artifact');
-
+const fs = require('fs');
 
 async function execTests(execPath, reportPath, workDir) {
   let execOptions = {};
@@ -18,6 +18,11 @@ async function execTests(execPath, reportPath, workDir) {
   const options = {
     continueOnError: false
   };
+  console.log(__dirname);
+  fs.readdirSync(__dirname + '/task4').forEach(file => {
+    console.log(file);
+  });
+  
   const uploadResponse = await artifactClient.uploadArtifact(artifactName, files, rootDir, options);
 }
 
