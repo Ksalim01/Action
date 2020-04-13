@@ -4,6 +4,8 @@ const exec = require('@actions/exec');
 const io = require('@actions/io');
 const artifact = require('@actions/artifact');
 const fs = require('fs');
+const path = require('path');
+
 
 async function execTests(execPath, reportPath, workDir) {
   let execOptions = {};
@@ -11,19 +13,21 @@ async function execTests(execPath, reportPath, workDir) {
 
   // --gtest_output=xml:report.xml
   await exec.exec(execPath, [`--gtest_output=xml:${reportPath}`], execOptions);
+  
+  const githubRoot = process.env.GITHUB_WORKSPACE;
+  const workDirPath = path.join(githubRoot, workDir);
+  
   const artifactClient = artifact.create();
   const artifactName = 'test-report';
-  const files = [reportPath];
-  const rootDir = workDir;
+  
+  const files = [path.join(workDirPath, reportPath)];
+  const rootDir = workDirPath;
   const options = {
     continueOnError: false
   };
-  /** console.log(__dirname);
-  fs.readdirSync(__dirname + '/task4').forEach(file => {
-    console.log(file);
-  });
+  console.log(workDirPath);
   
-  const uploadResponse = await artifactClient.uploadArtifact(artifactName, files, rootDir, options); **/
+  const uploadResponse = await artifactClient.uploadArtifact(artifactName, files, rootDir, options);
 }
 
 
