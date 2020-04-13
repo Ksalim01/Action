@@ -18,12 +18,12 @@ async function execTests(execPath, reportPath, workDir) {
   const options = {
     continueOnError: false
   };
-  console.log(__dirname);
+  /** console.log(__dirname);
   fs.readdirSync(__dirname + '/task4').forEach(file => {
     console.log(file);
   });
   
-  const uploadResponse = await artifactClient.uploadArtifact(artifactName, files, rootDir, options);
+  const uploadResponse = await artifactClient.uploadArtifact(artifactName, files, rootDir, options); **/
 }
 
 
