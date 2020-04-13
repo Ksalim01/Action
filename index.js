@@ -35,6 +35,7 @@ try {
   const workDir = core.getInput('working-directory');
 
   execTests(execPath, reportPath, workDir);
+  const time = (new Date()).toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
