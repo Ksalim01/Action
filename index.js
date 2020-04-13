@@ -14,7 +14,7 @@ async function execTests(execPath, reportPath, workDir) {
   const artifactClient = artifact.create();
   const artifactName = 'test-report';
   const files = [reportPath];
-  const rootDir = '.';
+  const rootDir = workDir;
   const options = {
     continueOnError: false
   };
