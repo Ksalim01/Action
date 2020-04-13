@@ -1,10 +1,12 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  exec-path:  # id of input
+    description: 'Path to executable for running tests'
     required: true
-    default: 'World'
+  report-path:
+    description: 'Output path to report'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
