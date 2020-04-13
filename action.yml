@@ -7,6 +7,9 @@ inputs:
   report-path:
     description: 'Output path to report'
     required: true
+  working-directory:
+    description: 'Path to workdir'
+    required: True
 outputs:
   time: # id of output
     description: 'The time we greeted you'

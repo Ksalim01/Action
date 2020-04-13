@@ -9,9 +9,12 @@ try {
   // `who-to-greet` input defined in action metadata file
   const execPath = core.getInput('exec-path');
   const reportPath = core.getInput('report-path');
+  const workDir = core.getInput('working-directory');
+  let execOptions = {};
+  execOptions.cwd = workDir;
 
   // --gtest_output=xml:report.xml
-  await exec.exec(execPath, [`--gtest_output=xml:${reportPath}`]);
+  await exec.exec(execPath, [`--gtest_output=xml:${reportPath}`], execOptions);
 
   const artifactClient = artifact.create();
   const artifactName = 'test-report';
